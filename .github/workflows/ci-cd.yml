@@ -37,7 +37,6 @@ jobs:
       contents: read
     name: Linter
     runs-on: self-hosted
-    timeout-minutes: 5
     steps:
     - name: Checkout
       uses: actions/checkout@v6
@@ -99,7 +98,6 @@ jobs:
       contents: read
     name: Generate llhttp sources
     runs-on: self-hosted
-    timeout-minutes: 5
     steps:
     - name: Checkout
       uses: actions/checkout@v6
@@ -139,13 +137,12 @@ jobs:
         no-extensions:
         - ''
         os:
-        - ubuntu
+        - ubuntu-latest
         experimental:
         - false
-      fail-fast: true
+      fail-fast: false
     runs-on: self-hosted
     continue-on-error: ${{ matrix.experimental }}
-    timeout-minutes: 15
     steps:
     - name: Checkout
       uses: actions/checkout@v6
@@ -243,10 +240,9 @@ jobs:
         no-extensions:
         - ''
         os:
-        - ubuntu
-      fail-fast: true
+        - ubuntu-latest
+      fail-fast: false
     runs-on: self-hosted
-    timeout-minutes: 15
     steps:
     - name: Checkout
       uses: actions/checkout@v6
@@ -314,7 +310,6 @@ jobs:
     - pre-setup
     if: needs.pre-setup.outputs.upstream-repository-id == github.repository_id
     runs-on: self-hosted
-    timeout-minutes: 15
     steps:
     - name: Checkout project
       uses: actions/checkout@v6
@@ -353,9 +348,9 @@ jobs:
     strategy:
       matrix:
         os:
-        - ubuntu
+        - ubuntu-latest
+      fail-fast: false
     runs-on: self-hosted
-    timeout-minutes: 15
     steps:
     - name: Checkout
       uses: actions/checkout@v6
@@ -478,6 +473,7 @@ jobs:
         - ''
         musl:
         - ''
+      fail-fast: false
     steps:
     - name: Checkout
       uses: actions/checkout@v6
